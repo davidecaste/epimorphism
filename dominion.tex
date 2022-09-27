@@ -1,0 +1,485 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{amssymb,amsthm,amscd,amsmath, txfonts,mathrsfs,enumerate}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{eufrak}
+\usepackage{makeidx}
+%\usepackage{enumitem}
+
+
+
+
+\input xy
+\xyoption{all}
+
+
+\usepackage{vmargin}
+\setmarginsrb{28mm}{20mm}{28mm}{25mm}%
+{10mm}{7mm}{10mm}{10mm}
+
+\usepackage[all]{xy}
+%\usetikzlibrary{arrows,shapes,positioning,decorations.markings, decorations.pathreplacing,decorations.pathmorphing}
+
+\usepackage{hyperref}
+%% hyperref should be the last package loaded
+
+\usepackage[makeroom]{cancel}
+
+
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{problem}[lemma]{Problem}
+\newtheorem{fact}[lemma]{Fact}
+\newtheorem{claim}[lemma]{Claim}
+\newtheorem{question}[lemma]{Question}
+\newtheorem{fatti}[lemma]{Facts}
+\newtheorem*{claim*}{Claim}
+
+\newtheorem{introtheorem}{Theorem}
+\renewcommand{\theintrotheorem}{\Alph{introtheorem}} 
+
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem{construction}[lemma]{Construction}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{examples}[lemma]{Examples}
+\newtheorem*{notaz}{Notation}
+
+
+\newcommand{\bvector}[2]{\textstyle{\binom{#1}{#2}}}
+\newcommand*{\norm}[1]{\rVert #1 \rVert}
+\newcommand*{\ec}[2]{\mathscr{E}_{#1}(#2)}
+
+% NOTES
+\def\NB{$\clubsuit$}
+\def\NBA{$\blacklozenge$}
+\def\NBI{$\spadesuit$}
+\def\NBD{$\maltese\ $}
+
+% \mathbb
+\def\TT{\mathsf U}
+\def\SS{\mathbb S}
+\def\N{\mathbb N}
+\def\R{\mathbb R}
+\def\Z{\mathbb Z}
+\def\Q{\mathbb Q}
+\def\T{\mathbb T}
+\def\K{\mathbb K}
+\def\A{\mathcal A}
+\def\D{\mathfrak D}
+\def\X{\mathfrak X}
+\def\V{\mathfrak V}
+\def\Y{\mathfrak Y}
+\def\atr{\mathfrak{atr}}
+\def\Coim{\mathrm{Coim}}
+\def\coeq{\mathrm{coeq}}
+
+% Operators
+\def\Ker{\mathrm{Ker}}
+\def\P{\mathcal P}
+\def\Pf{\P_{fin}}
+\def\Aut{\mathrm{Aut}}
+\def\Mod{\mathrm{Mod}}
+\def\Se{\mathfrak S}
+\def\G{\mathcal{G}}
+
+\def\hti{\widetilde{h}}
+
+%\newcommand{\LM}{\mathcal L}
+\newcommand{\F}{\mathcal F}
+%\newcommand*{\Mon}[1]{\mathcal M_{#1}}
+%\newcommand{\LCG}{\textbf{\textup{LC}}}
+%\newcommand{\LC}{{}_{\K}\LCG}
+%\newcommand{\LLC}{{}_{\K}\textbf{\textup{LLC}}}
+%\newcommand{\LCA}{\textbf{\textup{LCA}}}
+%\newcommand{\Set}{\textbf{\textup{Set}}}
+%\newcommand{\CC}{\LCA_{cc}}
+%\newcommand{\Vect}{{}_{\K}{\mathbf Vect}}
+%\newcommand{\Flow}{\mathrm{Flow}}
+\newcommand{\bcL}{\mathbf{\mathcal{L}}}
+%\newcommand{\Lqm}{\bcL_{qm}}
+\newcommand{\barLqm}{\overline{\bcL}_{qm}}
+\newcommand{\Lpqm}{\mathcal{L}_{pqm}}
+%\newcommand{\Ab}{\textbf{\textup{Ab}}}
+%\newcommand{\TDLC}{\textbf{\textup{TDLC}}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\re}{\mathrm{reg}}
+% Functors
+\newcommand{\LCO}{\mathcal{LCO}}
+\newcommand{\CO}{\mathcal{CO}}
+\newcommand{\clop}{closure operator}
+
+\def\Triple{\mathbb T}
+
+\def\Inv{\mathrm{Inv}}
+
+%\DeclareMathOperator{\td}{t.d.}
+%\DeclareMathOperator{\dist}{dist}
+%\DeclareMathOperator{\cardm}{card}
+\def\Im{\mathrm{Im}}
+%\DeclareMathOperator{\supp}{Supp}
+
+\newcommand*{\card}[1]{\left\vert #1 \right\vert}
+%\newcommand*{\abs}[1]{\left\lvert #1 \right\rvert}
+%\newcommand*{\Abs}[1]{\bigl\lvert #1 \bigr\rvert}
+%\newcommand*{\set}[1]{\left\{ #1 \right\}}
+%\newcommand*{\tuple}[1]{\langle #1 \rangle}
+
+% Entropies
+\newcommand{\halg}{h_{alg}}
+\newcommand{\hset}{\texorpdfstring{\ensuremath{h_{set}}}{h-set}}
+\newcommand{\Halg}{H_{alg}}
+\def\ent{\mathrm{ent}}
+\def\M{\mathcal{M}}
+\newcommand\eps{\varepsilon}
+% Categories
+\newcommand{\LM}{\mathcal L}
+\newcommand{\LCG}{\textbf{\textup{LC}}}
+\newcommand{\LC}{{}_{\K}\LCG}
+\newcommand{\LLC}{{}_{\K}\textbf{\textup{LLC}}}
+\newcommand{\LCA}{\textbf{\textup{LCA}}}
+\newcommand{\Set}{\textbf{\textup{Set}}}
+\newcommand{\CC}{\LCA_{cc}}
+\newcommand{\Vect}{{\K}\text{-}\textbf{\textup{Vect}}}
+\newcommand{\Flow}{\mathrm{Flow}}
+\newcommand{\Lqm}{\mathcal{L}_{qm}}
+\newcommand{\LL}{\overline{\mathcal{L}}_{qm}}
+\newcommand{\Ab}{\textbf{\textup{Ab}}}
+\newcommand{\Grp}{\textbf{\textup{Grp}}}
+\newcommand{\Ring}{\textbf{\textup{Ring}}}
+\newcommand{\Modu}{R\text{-}\textbf{\textup{Mod}}}
+\newcommand{\Mon}{\textbf{\textup{Mon}}}
+\newcommand{\TFA}{\textbf{\textup{TFAb}}}
+\newcommand{\Cat}{\textbf{\textup{Cat}}}
+\renewcommand{\Top}{\textbf{\textup{Top}}}
+\newcommand{\Haus}{\textbf{\textup{Haus}}}
+\newcommand{\FHaus}{\textbf{\textup{FHaus}}}
+\newcommand{\Cmon}{\textbf{\textup{Cmon}}}
+\newcommand{\Semi}{\textbf{\textup{Semi}}}
+\newcommand{\Csemi}{\textbf{\textup{Csemi}}}
+\newcommand{\TDLC}{\textbf{\textup{TDLC}}}
+\newcommand{\SL}{\mathcal{SL}}
+\newcommand{\VSL}{\mathcal{VSL}}
+\newcommand{\TAb}{\mathbf{TAb}}
+\newcommand{\QQ}{\mathcal Q}
+\newcommand{\SLatt}{\mathbf{SLatt_0}}
+\newcommand{\SLattnobottom}{\mathbf{SLatt}}
+\newcommand{\eim}[1]{\mathbf{EM}{(#1)}}
+\newcommand{\CHaus}{\mathbf{CHaus}}
+\newcommand{\Bool}{\mathbf{Bool}}
+\newcommand{\CSLatt}{\mathbf{CSLatt}}
+\newcommand{\MM}{\mathfrak{M}}
+\newcommand{\BL}{\mathbf{BLatt}}
+
+\newcommand{\bi}[3]{\mathsf{BiHom}(#1,#2;#3)}
+% Functors
+%\newcommand{\LCO}{\mathcal{LCO}}
+%\newcommand{\CO}{\mathcal{CO}}
+
+%Miscellanea
+\newcommand{\argu}{\hbox to 7truept{\hrulefill}}
+
+\DeclareMathOperator{\Ufor}{U}
+\DeclareMathOperator{\Cfun}{C}
+\DeclareMathOperator{\Dfun}{D}
+\DeclareMathOperator{\Ifun}{I}
+\DeclareMathOperator{\Ffun}{F}
+\DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\Gfun}{G}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\wid}{width}
+\DeclareMathOperator{\Conv}{Conv}
+\DeclareMathOperator{\Dclop}{D}
+\DeclareMathOperator{\Tclop}{T}
+\DeclareMathOperator{\Iclop}{I}
+\DeclareMathOperator{\Cclop}{C}
+%\newcommand{\Spdf}{\texorpdfstring{$S$}{S}}
+%\newcommand{\Gpdf}{\texorpdfstring{$G$\xspace}{G\xspace}}
+%% Pdf-LaTeX lancia un warning se trova una formula dentro il titolo di una
+%% sezione. La soluzione per evitarlo e' usare il comando \texorpdfstring
+%% usage: instead of writing \section{$S$-sfift}, write \section{\Spdf-shift}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\rel{\mathfrak{R}}
+%% <x,y> tuple
+\newcommand*{\Pa}[1]{\bigl(#1\bigr)}
+\newcommand*{\PA}[1]{\left(#1\right)}
+% \newcommand{\PF}[1]{[#1]^{<\omega}}
+\newcommand{\et}{\ \& \ }
+\newcommand{\SDiff}{\mathbin{\Delta}}
+
+\newcommand{\rest}{\mathbin\restriction}
+
+\newcommand*{\ns}[1]{\tensor[^*]{#1}{}}
+% {{}^*{#1}}
+\newcommand{\nsA}{\ns A}
+%{{}^*\!A}
+\newcommand{\nsV}{\ns{\mathbb V}}
+
+%\newcommand{\av}{{\bar a}}
+%\newcommand{\cv}{{\bar c}}
+%\newcommand{\kv}{{\bar k}}
+%\newcommand{\nv}{{\bar n}}
+%\newcommand{\Aver}{\mathcal H}
+%\newcommand{\Afam}{{\mathcal A}}
+%\newcommand{\FolSeq}{\mathfrak F}
+%\DeclareMathOperator{\td}{t.d.}
+%\DeclareMathOperator{\dist}{dist}
+%\DeclareMathOperator{\cardm}{card}
+%\newcommand{\eqeps}{\mathrel{=_{\eps}}}
+%\newcommand{\leqeps}{\mathrel{\leq_{\eps}}}
+%\newcommand{\geqeps}{\mathrel{\geq_{\eps}}}
+%\newcommand{\eps}{\varepsilon}
+%\newcommand{\beps}{{\bar\varepsilon}}
+%\newcommand{\nb}{{\bar n}}
+%
+%\newcommand{\ellinf}{\ell_{\infty}}
+%\newcommand{\ellone}{\ell_{1}}
+%\newcommand*{\pair}[1]{\langle #1 \rangle}
+
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\numberwithin{equation}{section}
+
+\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\oldthebibliography\thebibliography
+\renewcommand\thebibliography[1]{%
+	\oldthebibliography{#1}%
+	\setlength{\parskip}{\bibitemsep}%
+	\setlength{\itemsep}{\bibparskip}%
+}
+
+
+\def\gen{generalized\ }
+\def\nbd{neighbourhood\ }
+%\def\Gen{Generalized\ }
+\def\qm{quasi-metric\ }
+\def\qms{quasi-metrics\ }
+
+
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.200] pzcmi7t}{}
+\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
+\newcommand{\vin}{\rotatebox[origin=c]{-90}{$\dashv$}}
+\newcommand{\catname}[1]{\mathbf{#1}}
+\newcommand{\homodd}[0]{\catname{HoMod}}
+\newcommand{\until}[0]{\mathsf{until}}
+\newcommand{\slice}[2]{(\catname{#1}\downarrow{#2})}
+\newcommand{\reach}[1]{\mathsf{reach}_{#1}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\nat}{\xrightarrow{\bullet}}
+\newcommand{\im}[1]{\mathrm{Im}(#1)}
+\newcommand{\chain}[1]{\catname{Ch}(\catname{#1})}
+\newcommand{\homo}[1]{\mathcal{K}(\catname{#1})}
+\newcommand{\colim}[0]{\mathrm{colim}}
+\newcommand{\rela}[2]{\mathcal{Rel}_\mathcal{#2}(\catname{#1})}
+\newcommand{\sub}[1]{\mathsf{Sub}_{\catname{#1}}}
+\newcommand{\subm}[1]{\mathcal{M}/{{#1}}}
+\newcommand{\set}[1]{\mathsf{Inj}/{\abs{#1}}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\cod}{\mathrm{cod}}
+\newcommand{\co}[1]{\{\abs{#1}\}}
+\newcommand{\equ}[2]{[#1 \equiv #2]}
+\newcommand{\id}[1]{\mathsf{id}_{#1}}
+\newcommand{\sat}[0]{\mathsf{cl}}
+\newcommand{\escape}[3]{#2 \mathfrak{E}_{#1} #3}
+\newcommand{\es}[3]{ \mathsf{isER}_{#1}(p,#2, #3)}
+\newcommand{\esca}[4]{ \mathsf{eRoute}_{#1} (#4, #2, #3)}
+\newcommand{\cov}{\vartriangleleft}
+\newcommand{\pos}[1]{\mathsf{Pos}_{\mathfrak{#1}}}
+\newcommand{\rk}[2]{\mathrm{rk}_{#1}({#2})}
+\newcommand{\lind}[1]{\mathcal{L}({#1})}
+\newcommand{\class}[1]{\catname{Cl}({#1})}
+\newcommand{\hoclass}[1]{\catname{HoCl}({#1})}
+\newcommand{\propo}[0]{\mathsf{Prop}}
+\newcommand{\term}[2]{\mathbf{Term}({#1}, {#2})}
+\newcommand{\formu}[1]{\mathbf{Form}_{#1}}
+\newcommand{\ex}[1]{\mathcal{ex(#1)}}
+\newcommand{\inte}[1]{\llbracket{#1}\rrbracket}
+\newcommand{\typ}[1]{\mathsf{Type}({#1})}
+\newcommand{\coalg}[1]{\catname{CoAlg}(\mathcal{#1})}
+\newcommand{\modd}[0]{\catname{Mod}}
+\newcommand{\des}[1]{Des({#1})}
+\newcommand{\prof}[2]{\mathsf{Proof}({#1},{#2})}
+\newcommand{\sur}[3]{{#2}\mathfrak{S}_{#1}{#3}}
+\newcommand{\er}[3]{\mathsf{EscR}_{#1}({#2},{#3})}
+\newcommand{\ab}[0]{=-Adj}
+\newcommand{\ba}[0]{=-E}
+\newcommand{\su}[2]{\mathfrak{s}_{#1}^{#2}}
+\newcommand{\ipos}[1]{\catname{Pos}(\catname{#1})}
+\newcommand{\Su}[2]{\mathfrak{S}_{#1}^{#2}}
+\newcommand{\Pro}[2]{\mathfrak{P}_{#1}^{#2}}
+\newcommand{\surr}[0]{\mathsf{surr}}
+\newcommand{\propag}[0]{\mathsf{propag}}
+\newcommand{\nxt}[0]{\mathfrak{s}}
+\newcommand{\integ}[1]{\mathsf{int}_{#1}}
+\newcommand{\scat}[1]{\mathsf{nec}_{\gamma_{#1}}}
+\newcommand{\diam}[1]{\mathsf{cl}_{\gamma_{#1}}}
+\newcommand{\fix}[2]{\mathsf{Fix}_{(#1, \cdot)}({#2})}
+\newcommand{\stab}[2]{\mathsf{Stab}_{(#1, \cdot)}({#2})}
+\newcommand{\stabi}[2]{\mathsf{Stab}_{(#1, \cdot_{#1})}({#2})}
+\newcommand{\inva}[1]{\mathsf{Inv}_{(#1, \cdot)}}
+\newcommand{\invar}[1]{\mathsf{Inv}_{(#1, \cdot_{#1})}}
+\newcommand{\fuz}[0]{\mathcal{FzSub}}
+\newcommand{\cont}[0]{\mathsf{cont}}
+\newcommand{\bound}[0]{\mathsf{ext}}
+
+
+\def\E{\mathcal{E}}
+\def\epi{\mathsf{epi}}
+\def\reg{\mathsf{reg}}
+\newcommand{\rg}[2]{\mathsf{reg}_{#1}([#2])}
+\newcommand{\ep}[2]{\mathsf{repi}_{#1}([#2])}
+\newcommand{\vcat}{\V\textbf{\textup{-Cat}}}
+\def\e{\mathfrak{E}}
+
+
+
+\title{Generalizing Mitchell's Theorem to $\vcat$}
+
+\author{}
+\begin{document}
+	
+	\maketitle
+	\section{Preliminaries: tensor product of algebras}	
+	\begin{definition}
+Let $(\X, \otimes, I)$ be a symmetric monoidal category, and $(T, \eta, \mu)$ a monad on $\X$. A \emph{strength} is a natural transformation $\sigma:(-)\otimes T \to T((-) \otimes (-))$  such that the following diagrams commute
+
+\begin{gather*}
+\xymatrix@C=20pt{ I \otimes T(A) \ar[rr]^{\sigma_{I,A}} \ar[drr]&&T(I\otimes A) \ar[d]& &A\otimes B \ar[drr]_{\eta_{A\otimes B}} \ar[rr]^-{\id{A}\otimes \eta_B}& &A\otimes T(B)\ar[d]^{\sigma_{A,B}}\\
+	&& T(A) && & &T(A\otimes B)}\\
+\xymatrix@C=8pt{A\otimes B \otimes T(C)\ar[rr]^{\sigma_{A\otimes B, C} }\ar[dr]_{\id{A}\otimes\sigma_{B,C}} &&  T(A\otimes B \otimes C)\\
+& A \otimes T(B\otimes C)\ar[ur]_{\sigma_{A,B\otimes C}}}
+\end{gather*}
+Let $\tau$ be the twist natural transformation, so that $\tau_{A,B}:A\otimes B\to B\otimes A$, and suppose that $\sigma$ is a strength for $T$, then $(T,\sigma)$ is \emph{commutative} if the following diagram commutes
+\[\xymatrix@C=50pt{ T(T(A)\otimes B)\ar[r]^{T(\tau_{T(A),B})}& T(B\otimes T(A)) \ar[r]^{T(\sigma_{B,A})} & T(T(B\otimes A)) \ar[r]^{T(T(\tau_{B,A}))} & T(T(A\otimes B)) \ar[d]^{\mu_{A\otimes B}}\\
+	T(A) \otimes T(B) \ar[u]^{\sigma_{T(A),B}}  \ar[d]_{\tau_{T(A),T(B)}}& & &T(A\otimes B)\\
+	T(B)\otimes T(A) \ar[r]_{\sigma_{T(B), A}} &T(T(B)\otimes A) \ar[r]_{T(\tau_{T(B),A})}&T(A\otimes T(B)) \ar[r]_{T(\sigma_{A,B})} & T(T(A\otimes B)) \ar[u]_{\mu_{A\otimes B}}}\]	\end{definition}
+	
+	
+	\begin{remark}
+	It is well known that if $\X$ is $\Set$ then for every monad $T$ there exists a unique strength $\sigma$ on it. Specifically,
+	\[\sigma_{A,B}: A\times T(B) \to T(A\times B) \qquad (a,b)\mapsto T(i_a)(b)\]
+	 where 
+	 \[i_a: B\to  A\times B \qquad b\mapsto (a, b)\]
+Then a monad $T$ on $\Set$ is commutative if and only if the diagram 
+\[\]
+commutes, where
+
+	\end{remark}
+
+\begin{remark}There is a description of the algebraic theories which induces a commutative monads: they are the ones in which every operation commutes with every other.
+\end{remark}
+\begin{example}
+	Given the previous remark, examples of commutative monads are given by the one of $R$-modules for some commutative ring $R$ and the one associate to the actions of a commutative monoid.
+\end{example}
+	
+	\begin{definition}
+		Let $(\X, \otimes, I)$ be a symmetric monoidal category and $(T,\sigma)$ a commutative monad on $\X$, given $(X, \xi_1), (Y, \xi_2)$ and $(Z, \xi_2)$ in $\eim{T}$, an arrow $f:X\otimes Y\to Z$ is called a \emph{bihomomorphism}  if the following diagrams commute
+		\[\xymatrix@C=35pt{&X\otimes T(Y)  \ar[r]^{\sigma} \ar[d]_{\id{X}\otimes \xi_2} & T(X\otimes Y)  \ar[r]^{f}& T(Z) \ar[d]^{\xi_3}\\
+	&	X\otimes Y \ar[rr]_{f} & & Z\\
+T(X)\otimes Y \ar[d]_{\xi_1\otimes \id{Y}}\ar[r]^{\tau_ {T(X), Y}} & Y\otimes T(X) \ar[r]^\sigma& T(Y\otimes X) \ar[r]^{T(\tau_{X,Y})} & T(X\otimes Y) \ar[r]^{T(f)} & T(Z)\ar[d]^{\xi_3}\\
+X\otimes Y \ar[rrrr]_{f} & & & & Z}\]
+We will denote  by $\bi{(X,\xi_1)}{(Y,\xi_2)}{(Z,\xi_3)}$ the set of bihomomorphisms $X\otimes Y\to Z$.
+	\end{definition}
+	
+	Notice that for every $f\in \bi{(X,\xi_1)}{(Y,\xi_2)}{(Z,\xi_3)}$ and $h:(Z, \xi_3)\to (W, \xi_4)$, $h\circ f$ is again a bihomomorphism, so that we can deduce the following.
+	
+	\begin{proposition}
+	For every pair of Eilenberg-Moore algebras $(x, \xi_1)$ and $(Y, \xi_2)$, there exists a functor $\eim{T} \to \Set$ sending $(Z, \xi_3)$ to $\bi{(X,\xi_1)}{(Y,\xi_2)}{(Z,\xi_3)}$. 
+	\end{proposition}
+
+\begin{definition}
+The \emph{tensor product} $(X, \xi_1)\otimes_T(Y, \xi_2)$ of two Eilenberg-Moore algebras is a representative objcect for  $\bi{(X,\xi_1)}{(Y,\xi_2)}{-}$.
+\end{definition}
+
+\begin{remark}
+	We can spell out more explicity the universal property defining $(X, \xi_1)\otimes_T(Y, \xi_2)$. It comes equipped with a bihomomorphism $t:X\otimes Y\to U_T((X, \xi_1)\otimes_T(Y, \xi_2))$ such that, for every other bihomomorphism $f:X\otimes Y \to U_T(Z, \xi_3)$ there exists a unique $\overline{f}:(X, \xi_1)\otimes_T(Y, \xi_2)\to (Z, \xi_3)$ making the following diagram commutes
+	\[\xymatrix@C=50pt{X\otimes Y  \ar[r]^{f} \ar[d]_{t}&  Z\\
+	U_T((X, \xi_1)\otimes_T(Y, \xi_2)) \ar@/_0.3cm/[ur]_-{U_T(\overline{f})}}\]
+\end{remark}
+
+	\begin{theorem}\label{thm:mon}
+	For every commutative monad $(T, \eta, \mu)$ on $\Set$, $(-)\otimes_T(-)$ endows $\eim{T}$ of a symmetric monoidal structure, with unit $F_T(1)$. Moreover this structure is closed.
+	\end{theorem}
+	
+	We can exploit closedness to establish another result. 
+	
+	\begin{lemma}
+		If $F:\X_1\times \X_2\to \Y$ is a functor which preserves reflexive coequalizers in each variable, then $F$ preserves reflexive coequalizers.
+	\end{lemma}
+
+Let now $F, G:\X^{op}\times \X \rightrightarrows \Y$ be two functors with $\Y$ cocomplete, then we have arrows
+\[\omega^F_X:F(X,X)\to \int^{C\in \X}F(X, X) \qquad \omega^G_Y: G(Y,Y)\to \int^{Y\in \Y} G(Y, Y) \]
+On the other hand, if $\Y$ has a monoidal structure $(\otimes, I)$ we also have a functor
+\[F\otimes G: (\X\times \X )^{op}\times (\X\times \X) \to \Y \qquad ((X, Y), (X', Y')) \mapsto F(X, X')\otimes G(Y, Y')\]
+which has its own terminal cowedge
+\[\omega^{F\otimes G}_{(X,Y)}: F(X, X)\otimes G(Y, Y) \to \int^{(X,Y)\in \X\times \X} F(X,X)\otimes G(Y,Y)\]
+Thus there exists a unique \emph{comparison morphism}
+\[\phi:\int^{(X,Y)\in \X\times \X} F(X,X)\otimes G(Y,Y) \to \int^{C\in \X}F(X, X) \otimes \int^{Y\in \Y} G(Y, Y)\]
+which makes the following diagram commutative.
+
+\begin{corollary}\label{cor:refcoeq}
+	Let $(\Y, \otimes, I)$ be a closed monoidal category with $\Y$ cocomplete. Then for every $F, G:\X^{op}\times \X \rightrightarrows \Y$, the comparison functor 
+\end{corollary}
+	
+	\section{Mitchell's  Theorem}
+	In the following we will assume $\V$ to be $\eim{T}$ for some commutative monad $(T, \eta, \mu)$ on $\Set$. By Theorem \ref{thm:mon} we know that it comes equipped with a symmetric monoidal closed structure $(-)\otimes_T (-):\V\times \V\to \V$. We can then consider the category $\vcat$ of category enriched over $\V$.
+	
+	\begin{remark}We will denote by  $(-)_0:\vcat\to \Cat$ the functor sending a $\V$-category to its underlying category. Notice that, for every pair of objects $X, Y$  in a $\V$-category $\X$ we have
+		\[\X_0(X,Y)=U_T(\X(X,Y))\]
+	\end{remark}
+	\begin{definition}
+		Let $F:\X\to \Y$ be a $\V$-functor, let also $P$ and $Q$ be objects of $\Y$, we define $\e_F(X, Y) $ putting
+		\[\e_F(Y_1, Y_2):=\int^{X\in \X_0} \Y(Y_1, F_0(X)) \otimes_T \Y(F_0(X), Y_2)\]
+		which exists since $\V$ is cocomplete as a category monadic over $\Set$.
+	\end{definition}
+
+\begin{proposition}\label{prop:comp}
+	If $F:\X \to \Y$ is a $\V$-functor which 
+	
+	
+ \end{proposition}
+\begin{proof}
+	contenuto..
+\end{proof}
+
+
+
+\[\coprod \Y(Y_1, F_0(Y)) \otimes_T \Y(F_0(X), Y_2) \rightrightarrows  \coprod \Y(Y_1, F_0(X)) \otimes_T \Y(F_0(X), Y_2)  \]
+
+\begin{corollary}\label{cor:comp}
+	contenuto...
+\end{corollary}
+
+\begin{lemma}\label{lem:category}
+	For every $\V$-functor $F:\X\to \Y$, there exists a $\V$-category $\e$ with the same objects of $\Y$ and in which the objects of arrows between $Y_1$ and $Y_2$ is given by $\e_F(Y_1, Y_2)$.
+\end{lemma}
+\begin{proof}
+	contenuto...
+\end{proof}
+
+
+
+INSERIRE DEFINIZIONE DI DOMINIO QUA
+
+\begin{theorem}\label{thm:mitch}
+	
+\end{theorem}
+\begin{proof}
+	contenuto...
+\end{proof}
+
+\section{Semicategories}
+
+\end{document} 

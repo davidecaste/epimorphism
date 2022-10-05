@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{latexsym}
+\usepackage{relsize}
 \usepackage{eufrak}
 \usepackage{makeidx}
 %\usepackage{enumitem}
@@ -76,11 +77,6 @@
 \def\T{\mathbb T}
 \def\K{\mathbb K}
 \def\A{\mathcal A}
-\def\D{\mathfrak D}
-\def\X{\mathfrak X}
-\def\V{\mathfrak V}
-\def\Y{\mathfrak Y}
-\def\atr{\mathfrak{atr}}
 \def\Coim{\mathrm{Coim}}
 \def\coeq{\mathrm{coeq}}
 
@@ -95,6 +91,10 @@
 
 \def\hti{\widetilde{h}}
 
+
+%somma e prodotto in xy
+\newcommand{\Sum}{\mathlarger{\sum}}
+\newcommand{\Prod}{\mathlarger{\prod}}
 %\newcommand{\LM}{\mathcal L}
 \newcommand{\F}{\mathcal F}
 %\newcommand*{\Mon}[1]{\mathcal M_{#1}}
@@ -341,16 +341,27 @@
 \newcommand{\rg}[2]{\mathsf{reg}_{#1}([#2])}
 \newcommand{\ep}[2]{\mathsf{repi}_{#1}([#2])}
 \newcommand{\vcat}{\V\textbf{\textup{-Cat}}}
-\def\e{\mathfrak{E}}
 
+
+\def\A{\textbf {\textup{A}}}
+\def\B{\textbf {\textup{B}}}
+\def\C{\textbf {\textup{C}}}
+\def\D{\textbf {\textup{D}}}
+\def\X{\textbf {\textup{X}}}
+\def\V{\textbf {\textup{V}}}
+\def\Y{\textbf {\textup{Y}}}
+\def\e{\textbf {\textup{E}}}
 
 
 \title{Generalizing Mitchell's Theorem to $\vcat$}
 
 \author{}
+
+
 \begin{document}
 	
 	\maketitle
+
 	\section{Preliminaries: tensor product of algebras}	
 	\begin{definition}
 Let $(\X, \otimes, I)$ be a symmetric monoidal category, and $(T, \eta, \mu)$ a monad on $\X$. A \emph{strength} is a natural transformation $\sigma:(-)\otimes T \to T((-) \otimes (-))$  such that the following diagrams commute
@@ -372,10 +383,6 @@ Let $\tau$ be the twist natural transformation, so that $\tau_{A,B}:A\otimes B\t
 	\[\sigma_{A,B}: A\times T(B) \to T(A\times B) \qquad (a,b)\mapsto T(i_a)(b)\]
 	 where 
 	 \[i_a: B\to  A\times B \qquad b\mapsto (a, b)\]
-Then a monad $T$ on $\Set$ is commutative if and only if the diagram 
-\[\]
-commutes, where
-
 	\end{remark}
 
 \begin{remark}There is a description of the algebraic theories which induces a commutative monads: they are the ones in which every operation commutes with every other.
@@ -413,9 +420,9 @@ The \emph{tensor product} $(X, \xi_1)\otimes_T(Y, \xi_2)$ of two Eilenberg-Moore
 	For every commutative monad $(T, \eta, \mu)$ on $\Set$, $(-)\otimes_T(-)$ endows $\eim{T}$ of a symmetric monoidal structure, with unit $F_T(1)$. Moreover this structure is closed.
 	\end{theorem}
 	
-	We can exploit closedness to establish another result. 
+	We are interested in closedness since we will exploit it to apply the following, rather technical, results. 
 	
-	\begin{lemma}
+	\begin{lemma}\label{lem:pres}
 		If $F:\X_1\times \X_2\to \Y$ is a functor which preserves reflexive coequalizers in each variable, then $F$ preserves reflexive coequalizers.
 	\end{lemma}
 
@@ -428,16 +435,38 @@ which has its own terminal cowedge
 Thus there exists a unique \emph{comparison morphism}
 \[\phi:\int^{(X,Y)\in \X\times \X} F(X,X)\otimes G(Y,Y) \to \int^{C\in \X}F(X, X) \otimes \int^{Y\in \Y} G(Y, Y)\]
 which makes the following diagram commutative.
+\[\xymatrix{& F(X, X)\otimes G(Y,Y) \ar[dl]_{\omega^{F\otimes G}_{(X,Y)}} \ar[dr]^{\omega^F_X\otimes  \omega^G_Y}\\\int^{(X,Y)\in \X\times \X} F(X,X)\otimes G(Y,Y) \ar[rr]_{\phi} & &\int^{C\in \X}F(X, X) \otimes \int^{Y\in \Y} G(Y, Y) }\]
 
-\begin{corollary}\label{cor:refcoeq}
-	Let $(\Y, \otimes, I)$ be a closed monoidal category with $\Y$ cocomplete. Then for every $F, G:\X^{op}\times \X \rightrightarrows \Y$, the comparison functor 
-\end{corollary}
-	
+\begin{remark}
+Given a functor $F:\X^{op}\times \X \to \Y$  and an arrow $f:X_1\to X_2$, we have arrows
+\[F(f, \id{X_1}):F(X_2, X_1) \to F(X_1, X_1)  \qquad F(\id{X_2}, f ):F(X_2, X_1)\to F(X_2, X_2)\]
+which induces $F^*$ and $F_*$  which, by the general theory of coends, fit into a coequalizer diagram
+	\[\xymatrix{ \sum_{X_1, X_2\in \X} \sum_{\X(X_1, X_2)}  F(X_1, X_2) \ar@<.5ex>[rr]^-{F^*} \ar@<-.5ex>[rr]_-{F_*}&& \sum_{X\in \X} F(X, X) \ar[r]^{\omega^F}& \int^{X\in \X} F(X,X)  }\]
+		where $\omega^F$ is induced by $\omega^F_{X}$. Notice that this coequalizer is reflexive, i.e. $F^*$ and $F_*$ have a common section: for every $X\in \X$ we can consider the composition
+		\[\xymatrix{F(X,X) \ar[r]^-{i_{\id{X}}}& \sum_{\X(X, X)} F(X, X) \ar[r]^-{j_{X,X}}& \sum_{X_1, X_2\in \X} \sum_{\X(X_1, X_2)}  F(X_1, X_2)} \]
+	and define $s_F$ to be the induced arrows. 
+\end{remark}
+
+
+\begin{proposition}\label{cor:refcoeq}
+	Let $(\Y, \otimes, I)$ be a closed monoidal category with $\Y$ cocomplete. Then for every $F, G:\X^{op}\times \X \rightrightarrows \Y$, the comparison morphism previous defined is an isomorphism.
+\end{proposition}
+	\begin{proof}Take two coequalizer diagrams
+	\[\xymatrix{ \sum_{X_1, X_2\in \X} \sum_{\X(X_1, X_2)}  F(X_1, X_2) \ar@<.5ex>[rr]^-{F^*} \ar@<-.5ex>[rr]_-{F_*}&& \sum_{X\in \X} F(X, X) \ar[r]^{\omega^F}& \int^{X\in \X} F(X,X) \\ \sum_{X_1, X_2\in \X} \sum_{\X(X_1, X_2)}  G(X_1, X_2) \ar@<.5ex>[rr]^-{G^*} \ar@<-.5ex>[rr]_-{G_*}&& \sum_{X\in \X} G(X, X) \ar[r]^{\omega^G}& \int^{X\in \X} G(X,X) }\] 
+	Since they are reflexive, it follows from \ref{lem:pres}
+ that $\int^{X\in \X}F(X,X) \otimes \int^{Y\in \X} G(Y,Y)$	is the coequalizer of 
+\[\xymatrix{ \Sum\limits_{X_1, X_2\in \X} \hspace{3pt}\Sum\limits_{\X(X_1, X_2)}  F(X_1, X_2) \otimes \Sum\limits_{Y_1, Y_2\in \X} \hspace{3pt} \Sum\limits_{\X(Y_1, Y_2)}  G(Y_1, Y_2) \ar@<.5ex>[r]^-{F^*\otimes G^*} \ar@<-.5ex>[r]_-{F_*\otimes G_*} & \Sum\limits_{X\in \X} F(X, X) \otimes \Sum\limits_{Y\in \X} G(Y, Y) }\]
+and applying the fact that $\otimes$ preserves colimits  we have a diagram
+
+\[\xymatrix{ \Sum\limits_{X_1, X_2\in \X} \hspace{3pt}\Sum\limits_{\X(X_1, X_2)}  F(X_1, X_2) \otimes \Sum\limits_{Y_1, Y_2\in \X} \hspace{3pt} \Sum\limits_{\X(Y_1, Y_2)}  G(Y_1, Y_2)  \ar[d] \ar@<.5ex>[r]^-{F^*\otimes G^*} \ar@<-.5ex>[r]_-{F_*\otimes G_*} & \Sum\limits_{X\in \X} F(X, X) \ar[d] \otimes \Sum\limits_{Y\in \X} G(Y, Y) \\ \Sum\limits_{(X_1, Y_1), (X_2, Y_2) \in \X\times \X} \hspace{2pt}  \Sum\limits_{\X\times \X((X_1, Y_1), (X_2, Y_2))} F(X_1, X_2) \otimes G(Y_1, Y_2) \ar@<.5ex>[r]^-{(F\otimes G)^*}\ar@<-.5ex>[r]_-{(F\otimes G)_*}  & \Sum\limits_{(X, Y)\in \X\times \X} F(X,X)\otimes G(Y,Y)}\]
+
+in which the vertical arrows are isomorphism. Since $\int^{(X,Y)\in \X\times \X} F(X,X)\otimes G(Y,Y) $ is the coequalizer of the bottom row we get the thesis.
+\end{proof}
 	\section{Mitchell's  Theorem}
 	In the following we will assume $\V$ to be $\eim{T}$ for some commutative monad $(T, \eta, \mu)$ on $\Set$. By Theorem \ref{thm:mon} we know that it comes equipped with a symmetric monoidal closed structure $(-)\otimes_T (-):\V\times \V\to \V$. We can then consider the category $\vcat$ of category enriched over $\V$.
 	
-	\begin{remark}We will denote by  $(-)_0:\vcat\to \Cat$ the functor sending a $\V$-category to its underlying category. Notice that, for every pair of objects $X, Y$  in a $\V$-category $\X$ we have
-		\[\X_0(X,Y)=U_T(\X(X,Y))\]
+	\begin{remark}We will denote by  $(-)_0:\vcat\to \Cat$ the functor sending a $\V$-category to its underlying category. Notice that, for every pair of objects $X, Y$  in a $\V$-category $\X$
+	\[\X_0(X,Y)=\V(F_T(1), \X(X,Y) )\simeq\Set(1, U_T(\X(X,Y)))\simeq U_T(\X(X,Y))\]	
 	\end{remark}
 	\begin{definition}
 		Let $F:\X\to \Y$ be a $\V$-functor, let also $P$ and $Q$ be objects of $\Y$, we define $\e_F(X, Y) $ putting
@@ -446,40 +475,72 @@ which makes the following diagram commutative.
 	\end{definition}
 
 \begin{proposition}\label{prop:comp}
-	If $F:\X \to \Y$ is a $\V$-functor which 
-	
-	
+	If $F:\X \to \Y$ is a $\V$-functor which is the identity on objects, then there exists a $\V$-category $\e_F$  with the same objects of $\Y$ and in which the objects of arrows between $Y_1$ and $Y_2$ is given by $\e_F(Y_1, Y_2)$. 
  \end{proposition}
 \begin{proof}
-	contenuto..
+Given $Y\in \Y$ define an identity in $\e_F$ as the composition
+\[\xymatrix{I \ar[r]^-{\id{Y}}& \Y(Y,Y) \otimes_T \Y(Y,Y)\ar[r]^-{\omega_Y} &\e_F(Y, Y)}\] 
+Using\ref{cor:refcoeq} we can see that $\e_F(Y_1, Y_2)\otimes_T \e_F(Y_2, Y_3)$ is isomorphic to
+\[\int^{X, Y\in \X_0} \Y(Y_1, X)\otimes_T \Y(X, Y_2)\otimes \Y(Y_2, Y)\otimes_T \Y(Y, Y_3)\]
+and we can take as composition the arrow induced by
+\[\xymatrix{\Y(Y_1, X)\otimes \Y(X, Y_2)\otimes_T \Y(Y_2, Y)\otimes \Y(Y, Y_3) \ar[r] & \Y(Y_1, Y_2)\otimes_T \Y(Y_2, Y_3)}  \]
+The axioms for a $\V$-category follows from the properties of $\otimes_T$.
 \end{proof}
 
+\begin{definition}
+	
+	INSERIRE DEFINIZIONE DI DOMINIO QUA
+\end{definition}
 
+\begin{remark}
+	Under our hypotheses on $\V$ the following hold:
+	\begin{enumerate}
+		\item a $\V$-functor $F:\X\to \Y$ is mono if and only if it is injective on object and mono on arrows, where this last condition means that
+		\[\sum_{X, Y\in \X} \X(X,Y)\to \sum_{X, Y\in \X} \X(F(X),F(Y)) \]
+		is a mono in $\V$;
+		\item the family $\{\reg_{\X}\}_{\X\in \vcat}$ forms a closure operator $\reg$ on $\vcat$.
+	\end{enumerate}
+\end{remark}
 
-\[\coprod \Y(Y_1, F_0(Y)) \otimes_T \Y(F_0(X), Y_2) \rightrightarrows  \coprod \Y(Y_1, F_0(X)) \otimes_T \Y(F_0(X), Y_2)  \]
-
-\begin{corollary}\label{cor:comp}
-	contenuto...
-\end{corollary}
-
-\begin{lemma}\label{lem:category}
-	For every $\V$-functor $F:\X\to \Y$, there exists a $\V$-category $\e$ with the same objects of $\Y$ and in which the objects of arrows between $Y_1$ and $Y_2$ is given by $\e_F(Y_1, Y_2)$.
+\begin{lemma}
+Qui mostrare che reg è ereditario per sottocategorie piene
 \end{lemma}
 \begin{proof}
 	contenuto...
 \end{proof}
 
-
-
-INSERIRE DEFINIZIONE DI DOMINIO QUA
+\begin{remark}
+	reg NON è ereditario in generale (altrimenti epi regolari comporrebbero)
+\end{remark}
 
 \begin{theorem}\label{thm:mitch}
-	
+	Let $F:\X\to \Y$ a $\V$-functor which is mono and the identity on objects, then $\reg_{\Y}(F)$ is the inclusion of the subcategory $\A$ with the same objects of $\Y$ and such that the inclusion $\A(Y_1, Y_2)\to \Y(Y_1, Y_2)$ makes $\A(Y_1, Y_2)$ an equalizer for
+	\[\xymatrix@C=50pt{ I \otimes_T \Y(Y_1, Y_2) & \Y(Y_1, Y_1)\otimes_T \Y(Y_1, Y_2)\\ 
+		\Y(Y_1, Y_2)  & \int^{\X\in \X} \Y(Y_1, F(X) ) \otimes_T \Y(F(X),  Y_2) \\
+		\Y(Y_1, Y_2)\otimes_T I & \Y(Y_1, Y_2) \otimes_T \Y(Y_2, Y_2)} \]
 \end{theorem}
+
+\begin{remark}
+	GLi equalizzatori si calcolano come in $\Set$
+\end{remark}
+
 \begin{proof}
-	contenuto...
+Suppose that $H, G:\Y\to \e$ are such that $H\circ F=G\circ F$, then, for every $X\in \X$ we can take the composition
+\[\xymatrix{\Y(Y_1, F(X))\otimes_T \Y(F(X), Y_2)\ar[r] & \e(H(Y_1), H(F(X))) \otimes \e(G(F(X)), G(Y_2)) \ar[r] & \e(H(Y_1), G(Y_2))}\]
+which induces 
+\[f:\int^{X\in \X_0}\Y(Y_1, F(X))\otimes_T \Y(F(X), Y_2) \to \e(H(Y_1), G(Y_2))\]
+Now, if $s:Y_1\to Y_2$, taking $X_1$ and $X_2$  such that $F(X_i)=Y_i$ we get 
+\[f(\id{Y_1}\otimes s)=H(s) \qquad f(s\otimes \id{Y_2})=G(s)\]
+So, if $s$ belongs to $\A$ then it must belong to $\reg_{\Y}(F)$.
+
+Viceversa, we can define $H,G:\Y\to \e_F$ which are the identity on objects putting, for every $s:Y_1\to Y_2$
+\[H(s):=s\otimes \id{Y_2} \qquad G(s):=\id{Y_1}\otimes s \]
+Notice that, if $s=U(t)$ for some $t:X_1\to X_2$ then $H(s)=G(s)$  since the following diagram commutes
+\[\]
+On the other hand, if $s$ doesn't lie in $\A$, $G(s)\neq H(s)$ and thus $s$ doesn't belong to $\reg_{\Y}(F)$.
 \end{proof}
 
 \section{Semicategories}
 
 \end{document} 
+
